@@ -1,59 +1,71 @@
 //index.js
 //获取应用实例
-var app = getApp()
+var request = require('../../comm/request.js')
 //正在热映
 const filmURL = 'http://api.douban.com/v2/movie/in_theaters'
+//即将上映
+const filmFuture = 'http://api.douban.com/v2/movie/coming_soon'
+//Top250
+const filmUsURL = 'http://api.douban.com/v2/movie/top250'
 
 /*
+    数据格式说明
     {
         headline  大标题
         list 电影列表
-            [
-                {
-                    poster 电影封面
-                    title 电影标题
-                    grade 评分
-                }
-            ]
     }
 */
 
-var moviesShow = [
-    {
-        'headline':"影院热映",
-        'list':[]
-    }
-]
+var movieHeadLine = ['影院热映','院线即将上映','Top250']
+
+var moviesShow = [];
 
 Page({
     data:{
-        title:"欢迎使用豆瓣电影",
         loaded:false,
         moviesShow:moviesShow
     },
     onLoad(){ //加载页面执行的函数
-        var that = this;
 
-        //发送请求
-        wx.request({
-            url:filmURL,
-            header:{
-                "Content-type":'text/json' //设置请求内容为json，否则请求失败
-            },
-            data:{
-                count:1
-            },
-            success(data){
-                console.log( data );
-                that.setData({
-                    loaded:true,
-                    
-                })
-            },
-            fail( error ){
-                console.log( error );
-            }
-        });
+        //请求分类电影
+        request.when([
+            request.fetchHotFilm({
+                url:filmURL,
+                data:{
+                    count:3
+                }
+            }),
+            request.fetchHotFilm({
+                url:filmFuture,
+                data:{
+                    count:3
+                }
+            }),
+            request.fetchHotFilm({
+                url:filmUsURL,
+                data:{
+                    count:3
+                }
+            })
+        ])
+        .then((data)=>{
+            //整理需要的数据
+            data.forEach(function (item,index){
+               moviesShow.push({
+                    headline:movieHeadLine[index],
+                    list:item.subjects
+               })     
+            });
+            //更新视图
+            this.setData({
+                loaded:true,
+                moviesShow:moviesShow
+            })
+        })
+        .catch((data)=>{  //错误处理,如果有一个失败，应该都失败，处理方式？？？
+            console.log( data );
+        })
+
 
     }
 })

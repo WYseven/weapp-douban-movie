@@ -28,8 +28,8 @@
 <!--不同时段电影介绍-->
 <template name="mov-item-temp">
 	<view class="mov-item">
-		<image class='mov-item-pic' src="../../imgs/moimg.jpg" />
-		<text class="mov-item-title">湄公河行动湄公河行动</text>
-		<view class="mov-item-grade">评分:<text class='mov-grade'>8.2</text></view>
+		<image class='mov-item-pic' src="{{images.medium}}" />
+		<text class="mov-item-title">{{title}}</text>
+		<view class="mov-item-grade">评分:<text class='mov-grade'>{{rating.average}}</text></view>
 	</view>
 </template>
