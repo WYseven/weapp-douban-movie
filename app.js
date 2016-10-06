@@ -1,5 +1,6 @@
 //app.js
 //全局设置数据
+
 App({
     onLaunch: function () {
     //调用API从本地缓存中获取数据
