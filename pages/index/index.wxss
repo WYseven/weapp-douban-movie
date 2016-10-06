@@ -1,0 +1,77 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mov-container {
+  height: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background:#f7f7f7;
+  border-top:1px solid #e9e9e9;
+}
+
+.clearFix:after{
+	display:block;
+	content:'',
+	clear:both;
+}
+.mov-box {
+	width:100%;
+	height:490rpx;
+	margin-top:30rpx;
+	background:#fff;
+}
+
+.mov-title-box {
+	height:120rpx;
+	line-height:120rpx;
+	box-sizing:border-box;
+	padding:0px 30rpx;
+}
+
+.mov-title {
+	font-size: 32rpx;
+	float: left;
+}
+.mov-more {
+	font-size: 26rpx;
+	float: right;
+	color:#63c183;
+}
+.mov-list {
+	width:100%;
+}
+.mov-item {
+	width: 187rpx;
+	height: 335rpx;
+	display:inline-block;
+	margin:0rpx 30rpx;
+}
+.mov-item-pic {
+	width:100%;
+	height:260rpx;
+}
+.mov-item-title {
+	width:100%;
+	height:50rpx;
+	line-height:50rpx;
+	display:block;
+	font-size:26rpx;
+	font-weight:bold;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.mov-item-grade {
+	width:100%;
+	display:block;
+	font-size:26rpx;
+}
+
+.mov-grade{
+	font-weight:bold;
+	color:red;
+}

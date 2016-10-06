@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<view class="mov-container">
+	<scroll-view wx:if="{{loaded}}">
+		<block wx:for="{{moviesShow}}">
+			<template is="mov-list-temp" data="{{...item}}"></template>
+		</block>
+	</scroll-view>
+	<loading hidden="{{loaded}}" bindchange="loadingChange">
+		加载中...
+	</loading>
+</view>
+<!--定义模板-->
+
+<!--不同时段电影呈现模块-->
+<template name="mov-list-temp">
+	<view class="mov-box">
+		<view class="clearFix mov-title-box">
+			<text class="mov-title">{{headline}}</text>
+			<text class="mov-more">更多></text>
+		</view>
+		<view class="clearFix mov-list">
+			<block wx:for="{{list}}">
+				<template is="mov-item-temp" data="{{...item}}"></template>
+			</block>
+		</view>
+	</view>
+</template>
+<!--不同时段电影介绍-->
+<template name="mov-item-temp">
+	<view class="mov-item">
+		<image class='mov-item-pic' src="../../imgs/moimg.jpg" />
+		<text class="mov-item-title">湄公河行动湄公河行动</text>
+		<view class="mov-item-grade">评分:<text class='mov-grade'>8.2</text></view>
+	</view>
+</template>
